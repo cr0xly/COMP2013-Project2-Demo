@@ -13,6 +13,7 @@ const clothingSize: ClothingSize[] = ["XS", "S", "M", "L", "XL", "XXL"];
 
 export default function FormComponent({
   clothesArticle,
+  responseMessage,
   handleOnSubmit,
   handleOnChange,
 }: FormComponentProps) {
@@ -65,6 +66,22 @@ export default function FormComponent({
           ))}
         </select>
         <br />
+        <label htmlFor="color">Color: </label>
+        <input
+          type="text"
+          name="color"
+          id="color"
+          value={clothesArticle.color}
+          onChange={handleOnChange}
+        />
+        <br />
+        <label htmlFor="description">Description: </label>
+        <textarea
+          name="description"
+          id="description"
+          value={clothesArticle.description}
+          onChange={handleOnChange}
+        ></textarea>
         <label htmlFor="size">Size: </label>
         <select
           name="size"
@@ -78,7 +95,30 @@ export default function FormComponent({
             </option>
           ))}
         </select>
+        <br />
+        <label htmlFor="price">Price: </label>
+        <input
+          type="number"
+          name="price"
+          id="price"
+          value={clothesArticle.price}
+          onChange={handleOnChange}
+          min="0"
+          step="0.5"
+        />
+        <br />
+        <label htmlFor="quantity">Quantity: </label>
+        <input
+          type="number"
+          name="quantity"
+          id="quantity"
+          value={clothesArticle.quantity}
+          onChange={handleOnChange}
+          min={0}
+        />
+        <button>Submit</button>
       </form>
+      <p>{responseMessage}</p>
     </div>
   );
 }
