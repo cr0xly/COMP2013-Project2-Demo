@@ -75,11 +75,25 @@ server.post("/data", async (request, response) => {
   });
   try {
     await newArticle.save();
+    response.status(201).send({
+      message: `The new item with id ${id} has been added sucessfully`,
+    });
+  } catch (error) {
+    console.log(error);
+    response.status(500).send(error);
+  }
+});
+
+//DELETE route to delete one clothing article by id
+server.delete("/data/:id", async (request, response) => {
+  //because param will convert ID to string,
+  //id needs to be reconverted to number to abide by the model schema
+  const id = Number(request.params.id);
+  try {
+    await ClothesItem.findOneAndDelete({ id });
     response
       .status(201)
-      .send({
-        message: `The new item with id ${id} has been added sucessfully`,
-      });
+      .send({ message: `Item with ID ${id} has been successfully deleted` });
   } catch (error) {
     console.log(error);
     response.status(500).send(error);

@@ -7,6 +7,7 @@ export default function ItemsContainer({
   itemsQuantity,
   handleAdjustQuantityCounter,
   handleAddToCheckout,
+  handleDeleteItem,
 }: ItemsContainerProps) {
   return (
     <div className="ItemsContainer">
@@ -22,6 +23,7 @@ export default function ItemsContainer({
             remainQuantity={itemQuantityObj.remainQuantity}
             handleAdjustQuantityCounter={handleAdjustQuantityCounter}
             handleAddToCheckout={handleAddToCheckout}
+            handleDeleteItem={handleDeleteItem}
           />
         );
       })}

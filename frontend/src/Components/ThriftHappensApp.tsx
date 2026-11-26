@@ -26,6 +26,7 @@ export interface ItemsContainerProps {
     userQuantity: number,
     price: number,
   ) => void;
+  handleDeleteItem: (id: number) => void;
 }
 
 export interface ItemsQuantity {
@@ -256,6 +257,17 @@ export default function ThriftHappensApp() {
     }
   }
 
+  async function handleDeleteItem(id: number) {
+    try {
+      await axios
+        .delete(`http://localhost:3000/data/${id}`)
+        .then((response) => setResponseMessage(response.data.message))
+        .then(() => getProductsFromDB());
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div>
       <NavBar />
@@ -265,6 +277,7 @@ export default function ThriftHappensApp() {
           itemsQuantity={itemsQuantity}
           handleAdjustQuantityCounter={handleAdjustQuantityCounter}
           handleAddToCheckout={handleAddToCheckout}
+          handleDeleteItem={handleDeleteItem}
         />
         <CheckoutContainer
           checkoutItems={checkoutItems}
