@@ -8,6 +8,7 @@ export default function ItemsContainer({
   handleAdjustQuantityCounter,
   handleAddToCheckout,
   handleDeleteItem,
+  handleEditItem,
 }: ItemsContainerProps) {
   return (
     <div className="ItemsContainer">
@@ -24,6 +25,7 @@ export default function ItemsContainer({
             handleAdjustQuantityCounter={handleAdjustQuantityCounter}
             handleAddToCheckout={handleAddToCheckout}
             handleDeleteItem={handleDeleteItem}
+            handleEditItem={handleEditItem}
           />
         );
       })}

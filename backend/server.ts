@@ -99,3 +99,19 @@ server.delete("/data/:id", async (request, response) => {
     response.status(500).send(error);
   }
 });
+
+//PATCH route to edit(patch) one clothing article by id
+server.patch("/data/:id", async (request, response) => {
+  const id = Number(request.params.id);
+  const clothesArticle = request.body;
+  console.log(clothesArticle);
+  try {
+    await ClothesItem.findOneAndUpdate({ id }, { ...clothesArticle });
+    response
+      .status(201)
+      .send({ message: `Item with id ${id} has been patched successfully` });
+  } catch (error) {
+    console.log(error);
+    response.send(500).send(error);
+  }
+});

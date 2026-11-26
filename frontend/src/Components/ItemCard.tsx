@@ -17,6 +17,7 @@ interface ItemCardProps extends ClothingProduct {
     price: number,
   ) => void;
   handleDeleteItem: (id: number) => void;
+  handleEditItem: (id: number) => void;
 }
 
 export default function ItemCard({
@@ -34,6 +35,7 @@ export default function ItemCard({
   handleAdjustQuantityCounter,
   handleAddToCheckout,
   handleDeleteItem,
+  handleEditItem,
 }: ItemCardProps) {
   return (
     <div className="ItemCard">
@@ -76,7 +78,7 @@ export default function ItemCard({
         </button>
       </div>
       <div>
-        <button>Edit</button>
+        <button onClick={() => handleEditItem(id)}>Edit</button>
         <button onClick={() => handleDeleteItem(id)}>Delete</button>
       </div>
     </div>
